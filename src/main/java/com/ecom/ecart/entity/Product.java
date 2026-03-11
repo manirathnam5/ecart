@@ -39,8 +39,10 @@ public class Product {
     @JoinColumn(name = "product_id")
     private List<ProductReview> productReviewList;
 
+    public Product() {
+    }
 
-    public Product(Long id, String name, Double price, String description, Double rating, String seller, Integer stock, Integer noOfReviews) {
+    public Product(Long id, String name, Double price, String description, Double rating, String seller, Integer stock) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -48,7 +50,7 @@ public class Product {
         this.rating = rating;
         this.seller = seller;
         this.stock = stock;
-        this.noOfReviews = noOfReviews;
+       // this.noOfReviews = noOfReviews;
     }
 
     public Long getId() {
@@ -107,11 +109,11 @@ public class Product {
         this.stock = stock;
     }
 
-    public Integer getNoOfReviews() {
+    /*public Integer getNoOfReviews() {
         return noOfReviews;
     }
 
     public void setNoOfReviews(Integer noOfReviews) {
         this.noOfReviews = noOfReviews;
-    }
+    }*/
 }
