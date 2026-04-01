@@ -4,11 +4,11 @@ import com.ecom.ecart.entity.Product;
 import com.ecom.ecart.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/product/")
@@ -23,5 +23,20 @@ public class ProductController {
         List<Product> productList = productService.getAllProducts();
         return ResponseEntity.ok(productList);
     }
+
+
+    @GetMapping("/pagination")
+    public Map<String, Object> getPagination(@RequestParam(defaultValue = "0") int page,
+                                             @RequestParam(defaultValue = "5") int size) {
+        return productService.getPagingProduct(page, size);
+        //return productList;
+    }
+
+    @GetMapping("/{id}")
+    public Product getProduct(@PathVariable Long id) {
+        return productService.getProductId(id);
+
+    }
+
 
 }

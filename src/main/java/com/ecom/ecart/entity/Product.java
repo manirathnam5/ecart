@@ -24,6 +24,8 @@ public class Product {
     @NotBlank(message = "Description field is required")
     private String description;
 
+    private String category ;
+
     private Double rating = 0.0;
     @NotBlank(message = "Seller field is required")
     private String seller;
@@ -43,11 +45,13 @@ public class Product {
     public Product() {
     }
 
-    public Product(Long id, String name, Double price, String description, Double rating, String seller, Integer stock,Integer noOfReviews) {
+
+    public Product(Long id, String name, Double price, String description, String category, Double rating, String seller, Integer stock, Integer noOfReviews) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.description = description;
+        this.category = category;
         this.rating = rating;
         this.seller = seller;
         this.stock = stock;
@@ -80,6 +84,15 @@ public class Product {
 
     public String getDescription() {
         return description;
+    }
+
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public void setDescription(String description) {
