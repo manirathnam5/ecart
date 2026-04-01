@@ -3,6 +3,7 @@ package com.ecom.ecart.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class Product {
     @NotBlank(message = "Name field is required")
     private String name;
     @Column(nullable = false)
-    @NotBlank(message = "Price field is required")
+    @NotNull(message = "Price field is required")
     private Double price;
     //@Column(nullable = true)
     @NotBlank(message = "Description field is required")
@@ -26,7 +27,7 @@ public class Product {
     private Double rating = 0.0;
     @NotBlank(message = "Seller field is required")
     private String seller;
-    @NotBlank(message = "Stock field is required")
+    @NotNull(message = "Stock field is required")
     private Integer stock;
 
     private Integer noOfReviews = 0;
@@ -42,7 +43,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(Long id, String name, Double price, String description, Double rating, String seller, Integer stock) {
+    public Product(Long id, String name, Double price, String description, Double rating, String seller, Integer stock,Integer noOfReviews) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -50,7 +51,7 @@ public class Product {
         this.rating = rating;
         this.seller = seller;
         this.stock = stock;
-       // this.noOfReviews = noOfReviews;
+        this.noOfReviews = noOfReviews;
     }
 
     public Long getId() {
