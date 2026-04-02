@@ -1,6 +1,5 @@
 package com.ecom.ecart.dataseed;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import com.ecom.ecart.entity.Product;
 import com.ecom.ecart.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;

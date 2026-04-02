@@ -2,10 +2,12 @@ package com.ecom.ecart.service;
 
 import com.ecom.ecart.entity.Product;
 import com.ecom.ecart.repository.ProductRepository;
+import com.ecom.ecart.spec.ProductSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -21,29 +23,35 @@ public class ProductService {
     private ProductRepository productRepository;
 
 
-    public List<Product> getAllProducts(){
+    public List<Product> getAllProducts() {
         List<Product> products = productRepository.findAll();
         return products;
     }
 
 
-    public  Map<String, Object> getPagingProduct(int page, int size) {
+    public Map<String, Object> getPagingProduct(int page, int size) {
 
-          Pageable pageable = PageRequest.of(page,size);
-          Page<Product> products = productRepository.findAll(pageable);
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Product> products = productRepository.findAll(pageable);
 
-          Map<String, Object> response = new HashMap<>();
+        Map<String, Object> response = new HashMap<>();
 
-          response.put("products", products.getContent());
-          response.put("Total Products " , products.getTotalElements());
-          return response;
+        response.put("products", products.getContent());
+        response.put("Total Products ", products.getTotalElements());
+        return response;
     }
 
 
-    public Product getProductId(Long id ){
+    public Product getProductId(Long id) {
+        return productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found "));
+    }
 
-          return productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found "));
 
+    public List<Product> searchCategory(String category,Double minPrice , Double maxPrice , String keyword){
+
+        Specification<Product> spec = Specification.where(ProductSpecification.hasCategory(category))
+                .and(ProductSpecification.priceBetween(minPrice,maxPrice));
+        return productRepository.findAll(spec);
     }
 }
 
