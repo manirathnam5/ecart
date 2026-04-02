@@ -27,4 +27,17 @@ public class ProductSpecification {
         };
 
    }
- }
+
+    public static Specification<Product> hasNameOrDescription(String keyword) {
+
+        return (root, query, criteriaBuilder) -> {
+
+            if(keyword == null || keyword.isEmpty()) return null;
+            return criteriaBuilder.or(
+                    criteriaBuilder.like(root.get("name"), "%"+ keyword.toLowerCase()+"%"),
+                    criteriaBuilder.like(root.get("description"),"%"+ keyword.toLowerCase()+"%")
+            );
+        };
+
+    }
+}
