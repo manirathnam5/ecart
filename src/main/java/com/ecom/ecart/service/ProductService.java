@@ -47,11 +47,12 @@ public class ProductService {
     }
 
 
-    public List<Product> searchCategory(String category, Double minPrice, Double maxPrice, String keyword) {
+    public List<Product> searchCategory(String category, Double minPrice, Double maxPrice, String keyword , Double rating ) {
 
         Specification<Product> spec = Specification.where(ProductSpecification.hasCategory(category))
                 .and(ProductSpecification.priceBetween(minPrice, maxPrice))
-                .and(ProductSpecification.hasNameOrDescription(keyword));
+                .and(ProductSpecification.hasNameOrDescription(keyword))
+                .and(ProductSpecification.hasRatingGreaterThan(rating));
         return productRepository.findAll(spec);
     }
 }

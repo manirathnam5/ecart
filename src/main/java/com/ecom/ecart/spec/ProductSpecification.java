@@ -32,12 +32,22 @@ public class ProductSpecification {
 
         return (root, query, criteriaBuilder) -> {
 
-            if(keyword == null || keyword.isEmpty()) return null;
+            if (keyword == null || keyword.isEmpty()) return null;
             return criteriaBuilder.or(
-                    criteriaBuilder.like(root.get("name"), "%"+ keyword.toLowerCase()+"%"),
-                    criteriaBuilder.like(root.get("description"),"%"+ keyword.toLowerCase()+"%")
+                    criteriaBuilder.like(root.get("name"), "%" + keyword.toLowerCase() + "%"),
+                    criteriaBuilder.like(root.get("description"), "%" + keyword.toLowerCase() + "%")
             );
         };
-
     }
-}
+
+        public static Specification<Product> hasRatingGreaterThan (Double rating){
+
+            return (root, query, criteriaBuilder) -> {
+
+                return criteriaBuilder.greaterThanOrEqualTo(root.get("rating"), rating);
+
+            };
+
+        }
+    }
+
