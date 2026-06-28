@@ -24,7 +24,6 @@ public class ProductController {
         return ResponseEntity.ok(productList);
     }
 
-
     @GetMapping("/pagination")
     public Map<String, Object> getPagination(@RequestParam(defaultValue = "0") int page,
                                              @RequestParam(defaultValue = "5") int size) {
@@ -46,7 +45,7 @@ public class ProductController {
                                        @RequestParam(required = false) String keyword,
                                        @RequestParam(required = false) Double rating) {
 
-        return productService.searchCategory(category, minPrice, maxPrice, keyword,rating);
+        return productService.searchCategory(category, minPrice, maxPrice, keyword, rating);
     }
 
 }
