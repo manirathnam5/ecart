@@ -78,7 +78,6 @@ public class ProductSeeder  implements CommandLineRunner {
 
             );
 
-
         productRepository.saveAll(demoProductList);
             System.out.println("Data seeded successfully ");
 
