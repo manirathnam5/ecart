@@ -25,13 +25,11 @@ public class ProductSpecification {
                 return criteriaBuilder.greaterThanOrEqualTo(root.get("price"),minPrice);
             return criteriaBuilder.between(root.get("price"),minPrice,maxPrice);
         };
-
    }
 
     public static Specification<Product> hasNameOrDescription(String keyword) {
 
         return (root, query, criteriaBuilder) -> {
-
             if (keyword == null || keyword.isEmpty()) return null;
             return criteriaBuilder.or(
                     criteriaBuilder.like(root.get("name"), "%" + keyword.toLowerCase() + "%"),
