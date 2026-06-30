@@ -43,9 +43,7 @@ public class ProductSpecification {
         public static Specification<Product> hasRatingGreaterThan (Double rating){
 
             return (root, query, criteriaBuilder) -> {
-
                 return criteriaBuilder.greaterThanOrEqualTo(root.get("rating"), rating);
-
             };
 
         }
