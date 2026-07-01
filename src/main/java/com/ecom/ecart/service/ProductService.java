@@ -31,9 +31,7 @@ public class ProductService {
 
         Pageable pageable = PageRequest.of(page, size);
         Page<Product> products = productRepository.findAll(pageable);
-
         Map<String, Object> response = new HashMap<>();
-
         response.put("products", products.getContent());
         response.put("Total Products ", products.getTotalElements());
         return response;
