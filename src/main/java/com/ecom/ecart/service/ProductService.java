@@ -22,12 +22,10 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-
     public List<Product> getAllProducts() {
         List<Product> products = productRepository.findAll();
         return products;
     }
-
 
     public Map<String, Object> getPagingProduct(int page, int size) {
 
